@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const contacts = useSelector((state) => state);
+  
   return (
     <div className='container'>
       <div className='row d-flex flex-column'>
         <Link to='/add' className='btn btn-outline-dark mt-5 mb-3 ml-auto col-2'
-          style={ { alignSelf: 'flex-end' } } // if ml-auto is not working 
+          style={{ alignSelf: 'flex-end' }} // if ml-auto is not working 
         >
           Add Contact
         </Link>
@@ -21,6 +24,36 @@ const Home = () => {
                 <th scope='col'></th>
               </tr>
             </thead>
+            <tbody>
+              {contacts.length > 0 ? (
+                contacts.map((contact, id) => (
+                  <tr key={id}>
+                    <td>{id + 1}</td>
+                    <td>{contact.name}</td>
+                    <td>{contact.email}</td>
+                    <td>{contact.phone}</td>
+                    <td>
+                      <Link
+                        to={`/edit/${contact.id}`}
+                        className='btn btn-sm btn-primary mx-1'
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        type='button'
+                        className='btn btn-sm btn-danger'
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <th>No contacts found</th>
+                </tr>
+              )}
+            </tbody>
           </table>
         </div>
       </div>
