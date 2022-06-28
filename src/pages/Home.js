@@ -14,7 +14,7 @@ const Home = () => {
           <table className='table table-hover'>
             <thead className='table-header bg-dark text-white'>
               <tr>
-                <th scope='col' className='px-3'>Code</th>
+                <th scope='col' className='px-3'>Id</th>
                 <th scope='col'>Name</th>
                 <th scope='col'>Email</th>
                 <th scope='col'>Phone</th>
